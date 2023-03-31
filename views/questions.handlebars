@@ -1,88 +1,89 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
     <meta charset="utf-8">
     <title></title>
     <style>
-      .post-container {
-        background-color: lightyellow;
-        width: 300px;
-        border: 2px solid black;
-        padding: 20px;
-        margin: 20px;
-        border-radius: 10px;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-        display: inline-block;
-        vertical-align: top;
-      }
-      .post-container:nth-child(3n+1) {
-        clear: left;
-      }
-      .post-container p {
-        margin: 0;
-      }
-      .post-container .tags button {
-        display: inline-block;
-        margin-right: 10px;
-      }
-      .post-container .tags form {
-        display: inline-block;
-      }
+    .post-container {
+  background-color: #fff;
+  color: #333;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  vertical-align: top;
+  transition: all .3s ease;
+}
+
+.post-container:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.post-container a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.post-container a:hover {
+  text-decoration: underline;
+}
+
+.post-container .tags button {
+  display: inline-block;
+  margin-right: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 50px;
+  padding: 6px 10px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+}
+
+.post-container .tags button:hover {
+  background-color: #72abe9;
+  border-color: #1c3755;
+  color: #fff;
+}
+
+.post-container .tags form {
+  display: inline-block;
+}
+
     </style>
   </head>
-  <body>
-    <h2 style="text-align: center; font-weight: bold; text-decoration: underline;" class="page-header">All Questions</h2>
-    <div id="posts-container">
-      {{#each allQues}}
-        <div class="post-container">
-          <p style="font-weight: bold;">
-            Title: <a href="/partQues/{{qStampId}}">{{qTitle}}</a><br>
-            Question: {{qBody}}
-          </p>
-          <div style="color: darkgreen;"><b>Upvotes:</b> {{qUpBy.length}}</div>
-          <div style="color: darkred;"><b>Downvotes:</b> {{qDownBy.length}}</div>
-          <div style="color: darkblue;"><b>Asked By:</b> <a href="/accounts/{{askedBy}}">{{askedBy}}</a></div><br>
-          <div class="tags"><b>TAGS:</b>
-            {{#each tags}}
-              <form class="" action="/search" method="post">
-                <input type="text" name="qTags" value="{{this}}" style="display:none;">
-                <button type="submit" class="btn btn-default btn-large">{{this}}</button>
-              </form>
-            {{/each}}
-          </div>
-          <div class="time-since-posted"></div>
+<body>
+  <h2 style="text-align: center; font-weight: bold; text-decoration: underline;" class="page-header">Forum Posts</h2>
+  <div id="posts-container">
+    {{#each allQues}}
+      <div class="post-container" data-timestamp="{{qCreatedAt}}">
+        <p style="font-weight: bold;">
+          Title: <a href="/partQues/{{qStampId}}">{{qTitle}}</a><br>
+          Question: {{qBody}}
+        </p>
+        <div style="color: black;"><b>Upvotes:</b> {{qUpBy.length}}</div>
+        <div style="color: black;"><b>Downvotes:</b> {{qDownBy.length}}</div>
+        <div style="color:black;"><b>Asked By:</b> <a href="/accounts/{{askedBy}}">{{askedBy}}</a></div><br>
+        <div class="tags"><b>TAGS:</b>
+          {{#each tags}}
+            <form class="" action="/search" method="post">
+              <input type="text" name="qTags" value="{{this}}" style="display:none;">
+              <button type="submit" class="btn btn-default btn-large">{{this}}</button>
+            </form>
+          {{/each}}
         </div>
-      {{/each}}
-    </div>
-    <script>
-      // Get all the post containers and store them in a variable
-      const postContainers = document.querySelectorAll('.post-container');
+        <div class="time-since-posted"></div>
+      </div>
+    {{/each}}
+  </div>
+ 
+</body>
 
-      // Loop through each post container and add the time since posted
-      postContainers.forEach(container => {
-        const timeSincePosted = getTimeSincePosted(container.dataset.timestamp);
-        container.querySelector('.time-since-posted').textContent = timeSincePosted;
-      });
 
-      function getTimeSincePosted(timestamp) {
-        const postDate = new Date(timestamp);
-        const currentDate = new Date();
-        const timeDifference = currentDate.getTime() - postDate.getTime();
-        const seconds = Math.floor(timeDifference / 1000);
-        const minutes = Math.floor(seconds / 60);
-        const hours = Math.floor(minutes / 60);
-        const days = Math.floor(hours / 24);
-
-        if (days > 0) {
-          return days + ' days ago';
-        } else if (hours > 0) {
-          return hours + ' hours ago';
-        } else if (minutes > 0) {
-          return minutes + ' minutes ago';
-        } else {
-          return 'just now';
-        }
-      }
-    </script>
-  </body>
 </html>
