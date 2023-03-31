@@ -3,9 +3,9 @@
 
 <head>
 	{{#if user}}
-	<title>redb17 Forum | {{user.username}}</title>
+	<title>Hobbly | {{user.username}}</title>
 	{{else}}
-	<title>redb17 Forum</title>
+	<title>Hobbly</title>
 	{{/if}}
 	<!-- Latest compiled and minified CSS -->
 
@@ -23,31 +23,48 @@
 
 <body>
 	<div class="container">
-      <div class="header clearfix">
-				<div class="row">
-				<div class="col-sm-12 col-sm-offset-1">
-        <nav id="navBar">
-          <ul class="nav nav-pills">
-						<li  class="navButtons" role="presentation"><a class="navLinks" href="/">Home</a></li>
-						<li  class="navButtons" role="presentation"><a class="navLinks" href="/questions">Questions</a></li>
-						<li  class="navButtons" role="presentation"><a class="navLinks" href="/ask">Ask</a></li>
-						<li  class="navButtons" role="presentation"><a class="navLinks" href="/search">Search</a></li>
-						{{#if user}}
-						<li  class="navButtons" role="presentation"><a class="navLinks" href="/notifications/{{user.username}}">Notifications</a></li>
-						<li  class="navButtons" role="presentation"><a class="navLinks" href="/accounts/{{user.username}}">My Account</a></li>
-						{{/if}}
-							<li  class="navButtons" role="presentation"><a class="navLinks" href="/admin">Admin</a></li>
-						{{#if user}}
-              <li class="navButtons" role="presentation"><a class="navLinks" href="/users/logout">Logout</a></li>
-            {{else}}
-              <li class="navButtons" role="presentation"><a class="navLinks" href="/users/login">Login</a></li>
-              <li class="navButtons" role="presentation"><a class="navLinks" href="/users/register">Register</a></li>
-            {{/if}}
-          </ul>
-        </nav>
-			</div>
-		</div>
-      </div>
+  <div class="header clearfix">
+    <nav id="navBar">
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/questions">Questions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/ask">Ask</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/search">Search</a>
+        </li>
+        {{#if user}}
+        <li class="nav-item">
+          <a class="nav-link" href="/notifications/{{user.username}}">Notifications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/accounts/{{user.username}}">My Account</a>
+        </li>
+        {{/if}}
+        <li class="nav-item">
+          <a class="nav-link" href="/admin">Admin</a>
+        </li>
+        {{#if user}}
+        <li class="nav-item">
+          <a class="nav-link" href="/users/logout">Logout</a>
+        </li>
+        {{else}}
+        <li class="nav-item">
+          <a class="nav-link" href="/users/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/register">Register</a>
+        </li>
+        {{/if}}
+      </ul>
+    </nav>
+  </div>
+</div>
 
 
       <div class="row">
@@ -72,8 +89,51 @@
         </div>
       </div>
       <div id='footer2'>
-      <h5 style="text-align: center !important;">redb17mail@gmail.com &nbsp | &nbsp <a href="https://github.com/redb17" target="_blank">GitHub Profile</a></h5>
+      <h5 style="text-align: center !important;">Team 2 &nbsp | &nbsp <a href="https://github.com/cen4010-fa21-g02" target="_blank">GitHub Profile</a></h5>
     </div>
     </div> <!-- /container -->
+
+<style>/* Style for menu bar container */
+.header {
+  background-color: #fff; /* set background color */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* add shadow effect */
+}
+
+/* Style for menu bar list */
+.nav-pills {
+  display: flex; /* display list items in a row */
+  justify-content: space-between; /* evenly distribute list items */
+  padding: 0; /* remove default list padding */
+  margin: 0; /* remove default list margin */
+}
+
+/* Style for menu bar list item */
+.nav-pills > li {
+  list-style: none; /* remove default bullet point */
+}
+
+/* Style for menu bar link */
+.nav-pills > li > a {
+  display: block; /* make link fill entire list item */
+  padding: 20px; /* add spacing between items */
+  font-weight: bold; /* set font weight to bold */
+  color: #333; /* set link color */
+  text-decoration: none; /* remove underline */
+  transition: all 0.2s ease-in-out; /* add smooth hover transition */
+}
+
+/* Style for menu bar link on hover */
+.nav-pills > li > a:hover {
+  color: #fff; /* change link color on hover */
+  background-color: #333; /* change background color on hover */
+}
+
+/* Style for active menu bar link */
+.nav-pills > .active > a {
+  color: #fff; /* set link color for active link */
+  background-color: #333; /* set background color for active link */
+}
+</style>
+	
 </body>
 </html>
