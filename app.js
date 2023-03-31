@@ -97,6 +97,7 @@ hbs.registerHelper('json', function(context) {
     return JSON.stringify(context);
 });
 
+//the url for the server is http://localhost:3000/
 app.listen(app.get('port'), function() {
     console.log('Server started on port ' + app.get('port'));
 });
